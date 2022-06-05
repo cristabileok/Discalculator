@@ -1,0 +1,171 @@
+#:kivy 2.0.0
+
+<BoxLayout>:
+    spacing: 5
+    background_color: 0,0,1,1
+
+<Label_Weights>:
+    text_size: self.size
+    halign: "center"
+    valign: "middle"
+    background_color: 0,.25,.4,1
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Button_Weights>:
+    text_size: self.size
+    halign: "center"
+    valign: "middle"
+    background_color: 0,.25,.4,1
+    #on_release: root.Remove(self)
+
+<Label_Results>:
+    text_size: self.size
+    halign: "center"
+    valign: "middle"
+    markup: True
+    background_color: 0,.4,.6,1
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Label_Add>:
+    text_size: self.size
+    halign: "center"
+    valign: "middle"
+    markup: True
+    background_color: 0,.5,.5,1
+    bold: True
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+<Main_Window>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: .2
+
+            TextInput:
+                id: textinput
+                focus: True
+                multiline: False
+                input_filter: "int"
+                text_validate_unfocus: False
+                on_text_validate: root.Calculate()
+                
+                
+            Button:
+                text: "Add"
+                on_press: root.Calculate()
+
+        
+
+            Button:
+                text: "Reset"
+                on_release: root.Reset()
+
+        BoxLayout:
+            orientation: "horizontal"
+                                   
+            BoxLayout:
+                orientation: "vertical"
+
+                #Label:
+                #    text:"Dumbbells"
+                #    size_hint_y: .2
+                #    background_color: 0,.33,.5,1
+                #    canvas.before:
+                #        Color:
+                #            rgba: self.background_color
+                #        Rectangle:
+                #            size: self.size
+                #            pos: self.pos
+
+                BoxLayout:
+                    id: dumb_pile
+                    orientation: "vertical"
+                    
+                BoxLayout:
+                    id: discs
+                    orientation:"horizontal"
+                    size_hint_y: .2
+
+                    Label_Weights:
+                        text: "Discs"
+                        
+                    Label_Weights:
+                        id: disc_1
+
+                    Label_Weights:
+                        id: disc_2
+
+                    Label_Weights:
+                        id: disc_5
+
+                    Label_Weights:
+                        id: disc_10
+
+                    
+
+
+                    #BoxLayout:
+                    #    id: disc_pile
+                    #    orientation: "horizontal"
+                    
+                
+        
+        
+        BoxLayout:
+            id: results
+            orientation: "horizontal"
+            size_hint_y: .2
+
+            Label_Results:
+                text: "Total #\nof Discs"
+
+            Label_Results:
+                id: num_1
+
+            Label_Results:
+                id: num_2
+
+            Label_Results:
+                id: num_5
+
+            Label_Results:
+                id: num_10
+
+        BoxLayout:
+            id: add
+            orientation: "horizontal"
+            size_hint_y:.2
+
+            Label_Add:
+                text: "# of Discs\nto Add"
+
+            Label_Add:
+                id: add_1
+
+            Label_Add:
+                id: add_2
+
+            Label_Add:
+                id: add_5
+
+            Label_Add:
+                id: add_10
